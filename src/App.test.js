@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import App from './App';
-import { shallow, configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { TodoList } from './ToDoList';
 
-configure({ adapter: new Adapter() });
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -18,6 +17,5 @@ it ('has an add function', () => {
 
 it ('renders the header', () => {
   const app = shallow(<App />)
-  const headerText = <h1>To Do List</h1>
-  expect(app.contains(headerText)).toEqual(true);
+  expect(app.find(TodoList).length).toEqual(1);
 })
